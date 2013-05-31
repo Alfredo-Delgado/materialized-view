@@ -1,0 +1,42 @@
+\echo
+\echo testing materialized view...
+\echo
+\echo setting up...
+\echo
+create view materialized_view_test_view as ( select now( ) as view_column );
+\d+ materialized_view_test_view
+\echo
+\echo initializing...
+\echo
+select materialized_view_init( 'materialized_view_test_view', '5 seconds'::interval );
+\dtv+ materialized_view_test_view* 
+\df get_materialized_view_test_view_materialized
+\d+ materialized_view_test_view
+\echo
+\echo materialized view initialized
+\echo
+\echo expecting materialized results returned
+\echo
+select * from materialized_view_test_view;
+\dt+ materialized_view_test_view_materialized
+select * from materialized_view_test_view;
+\echo
+\echo sleeping for 5 seconds...
+\echo
+select pg_sleep( 5 );
+\echo
+\echo expecting refreshed materialized results returned
+\echo
+select * from materialized_view_test_view;
+\dt+ materialized_view_test_view_materialized
+\echo
+\echo reverting to original view
+\echo
+select materialized_view_undo_init( 'materialized_view_test_view' );
+\dtv+ materialized_view_test_view* 
+\d+ materialized_view_test_view
+\df get_materialized_view_test_view_materialized
+\echo
+\echo cleaning up...
+\echo
+drop view materialized_view_test_view;

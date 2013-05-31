@@ -1,0 +1,3 @@
+\i create_function_materialized_view_init.sql
+\i create_function_materialized_view_refresh.sql
+\i create_function_materialized_view_undo_init.sql
