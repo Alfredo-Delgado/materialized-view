@@ -14,7 +14,7 @@ begin
         execute 'drop view if exists ' || _view_name;
         execute 'drop function if exists ' || _get_function || '( )';
         execute 'drop table if exists ' || _materialized_view;
-        execute 'alter view if exists ' || _original_view || ' rename to ' || _view_name;
+        execute 'alter view ' || _original_view || ' rename to ' || _view_name;
     end if;
 end;
 $$ language plpgsql
