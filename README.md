@@ -23,3 +23,5 @@ note:
 -----
 
 [Materialized Views are coming in PostgreSQL 9.3](http://j.mp/14eAeal "PostgreSQL: Documentation: 9.3: REFRESH MATERIALIZED VIEW")
+
+[![Analytics](https://ga-beacon.appspot.com/UA-46733058-1/materialized-view/README?pixel)]( )
